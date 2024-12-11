@@ -4,9 +4,11 @@ import './App.css'
 const App = () => {
   // Create a new state variable named 'team'
   const [isTeam, setIsTeam] = useState([])
+  console.log('isTeam: ' + isTeam)
 
   //Create a new state variable named 'money'
   const [isMoney, setIsMoney] = useState(100)
+  console.log('isMoney: ' + isMoney)
 
   //Create a new state variable named 'zombieFighters'
   const [isZombieFighters, setIsZombieFighters] = useState([
@@ -89,22 +91,21 @@ const App = () => {
 
 
   return (
-    <>
-      {isMoney}
-      {isZombieFighters.map((fighter, index) => (
-        <>
+    
+    <div>
+    {isZombieFighters.map((fighter, index) => (
+      <div key={index}> {/* Unique key for each fighter */}
         <ul>
-        <img src={fighter.img}></img>
-        <li>{fighter.name}</li>
-        <li>{fighter.price}</li>
-        <li>{fighter.strength}</li>
-        <li>{fighter.agility}</li>
+          <li><img src={fighter.img} alt={fighter.name} /></li>
+          <li>Name: {fighter.name}</li>
+          <li>Price: {fighter.price}</li>
+          <li>Strength: {fighter.strength}</li>
+          <li>Agility: {fighter.agility}</li>
         </ul>
-        <button>Add</button>
-        </>
-      ))}
-    </>
-
+        <button onClick={handleAddFighter}>Add</button>
+      </div>
+    ))}
+  </div>
   );
 }
 
