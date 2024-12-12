@@ -12,6 +12,11 @@ const App = () => {
 
   const [myTeam, setMyTeam] = useState([])
 
+  const handleAddFighter= (fighter) => {
+    console.log(...myTeam, fighter)
+    setMyTeam([...myTeam, fighter])
+  }
+
   //Create a new state variable named 'zombieFighters'
   const [isZombieFighters, setIsZombieFighters] = useState([
     {
@@ -86,18 +91,18 @@ const App = () => {
     },
   ])
 
-  const handleAddFighter= () => {
-    setMyTeam(...{fighter})
-  }
-
-
 
   return (
     <>
     <h1>Zombie Fighters</h1>
-    <h3>Money:{isMoney}</h3>
+    <h2>Money:{isMoney}</h2>
+    <h2>Team Strength</h2>
+    <h2>Team Agility</h2>
     <div>
-    {isZombieFighters.map((fighter, index) => (
+      {myTeam}
+    </div>
+    <div>
+      {isZombieFighters.map((fighter, index) => (
       <div key={index}> 
         <ul>
           <li><img src={fighter.img} alt={fighter.name} /></li>
