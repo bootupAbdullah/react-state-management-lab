@@ -1,21 +1,27 @@
 import { useState } from "react";
+import React from "react";
 import './App.css'
 
 const App = () => {
   // Create a new state variable named 'team'
-  const [isTeam, setIsTeam] = useState([])
-  console.log('isTeam: ' + isTeam)
+  const [team, setTeam] = useState([])
+
 
   //Create a new state variable named 'money'
-  const [isMoney, setIsMoney] = useState(100)
-  console.log('isMoney: ' + isMoney)
+  const [money, setMoney] = useState(100)
 
-  const [myTeam, setMyTeam] = useState([])
+ // console.log('isMoney: ' + money)
+
+  const [totalStrength, setTotalStrength] = useState(0)
 
   const handleAddFighter= (fighter) => {
-    console.log(...myTeam, fighter)
-    setMyTeam([...myTeam, fighter])
+    console.log(...team, fighter)
+    setTeam([...team, fighter])
+    setTotalStrength({...totalStrength + fighter.strength})
   }
+
+
+  
 
   //Create a new state variable named 'zombieFighters'
   const [isZombieFighters, setIsZombieFighters] = useState([
@@ -91,19 +97,15 @@ const App = () => {
     },
   ])
 
-
   return (
-    <>
+    <section className="main-section">
     <h1>Zombie Fighters</h1>
-    <h2>Money:{isMoney}</h2>
-    <h2>Team Strength</h2>
+    <h2>Money:{money}</h2>
+    <h2>{totalStrength}</h2>
     <h2>Team Agility</h2>
-    <div>
-      {myTeam}
-    </div>
-    <div>
-      {isZombieFighters.map((fighter, index) => (
-      <div key={index}> 
+    <div className="myTeam">
+      {team.map((fighter, index) => (
+        <React.Fragment key={index}>
         <ul>
           <li><img src={fighter.img} alt={fighter.name} /></li>
           <li>Name: {fighter.name}</li>
@@ -111,11 +113,26 @@ const App = () => {
           <li>Strength: {fighter.strength}</li>
           <li>Agility: {fighter.agility}</li>
         </ul>
-        <button onClick={ () => handleAddFighter(fighter)}>+</button>
-      </div>
-    ))}
-  </div>
-  </>
+        <button onClick={ () => handleRemoveFighter(fighter)}>Add</button>
+        </React.Fragment>
+      ))}
+    </div>  
+    <div className="fighters">
+      {isZombieFighters.map((fighter, index) => (
+      <React.Fragment key={index}>
+        <ul>
+          <li key={index}></li>
+          <li><img src={fighter.img} alt={fighter.name} /></li>
+          <li>Name: {fighter.name}</li>
+          <li>Price: {fighter.price}</li>
+          <li>Strength: {fighter.strength}</li>
+          <li>Agility: {fighter.agility}</li>
+        </ul>
+        <button onClick={ () => handleAddFighter(fighter)}>Add</button>
+      </React.Fragment>
+      ))}
+    </div>
+  </section>
   );
 }
 
