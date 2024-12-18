@@ -14,11 +14,14 @@ const App = () => {
 
   const [totalStrength, setTotalStrength] = useState(0)
 
-  const handleAddFighter= (fighter) => {
-    console.log(...team, fighter)
-    setTeam([...team, fighter])x
-    setTotalStrength({...totalStrength + fighter.strength})
+  const handleAddFighter = (fighter) => {
+    // console.log(...team, fighter)
+    setTeam([...team, fighter])
+    setTotalStrength(prevStrength => prevStrength + fighter.strength);
+    setMoney(prevMoney => prevMoney - fighter.price)
+
   }
+
 
   //Create a new state variable named 'zombieFighters'
   const [isZombieFighters, setIsZombieFighters] = useState([
@@ -94,6 +97,12 @@ const App = () => {
     },
   ])
 
+  const checkTeamStatus = (length) => {
+    if(team.length === 0) {
+      status: true
+    }
+  }
+
   return (
     <section className="main-section">
     <h1>Zombie Fighters</h1>
@@ -125,7 +134,7 @@ const App = () => {
           <li>Strength: {fighter.strength}</li>
           <li>Agility: {fighter.agility}</li>
         </ul>
-        <button onClick={ () => handleAddFighter(fighter)}>Add</button>
+        <button onClick={() => handleAddFighter(fighter)}>Add</button>
       </React.Fragment>
       ))}
     </div>
