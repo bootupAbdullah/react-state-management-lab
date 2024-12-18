@@ -16,10 +16,13 @@ const App = () => {
 
   const handleAddFighter = (fighter) => {
     // console.log(...team, fighter)
-    setTeam([...team, fighter])
-    setTotalStrength(prevStrength => prevStrength + fighter.strength);
-    setMoney(prevMoney => prevMoney - fighter.price)
-
+    if (money > 0) {
+      setTeam([...team, fighter])
+      setTotalStrength(prevStrength => prevStrength + fighter.strength);
+      setMoney(prevMoney => prevMoney - fighter.price)
+    } else {
+      console.log('You don\'t have enough money!')
+      } 
   }
 
 
