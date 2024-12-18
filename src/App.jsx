@@ -97,11 +97,13 @@ const App = () => {
     },
   ])
 
-  const checkTeamStatus = (length) => {
-    if(team.length === 0) {
-      status: true
-    }
-  }
+  // const checkTeamStatus = ([team]) => {
+  //   if([team].length === 0) {
+  //     <p>Pick some team memebers!</p>
+  //   } else {
+
+  //   }
+  // }
 
   return (
     <section className="main-section">
@@ -110,7 +112,9 @@ const App = () => {
     <h2>{totalStrength}</h2>
     <h2>Team Agility</h2>
     <div className="myTeam">
-      {team.map((fighter, index) => (
+      {(team.length === 0)
+      ? <div> <p>Pick some team memebers!</p> </div>
+      : <div> {team.map((fighter, index) => (
         <React.Fragment key={index}>
         <ul>
           <li><img src={fighter.img} alt={fighter.name} /></li>
@@ -122,6 +126,8 @@ const App = () => {
         <button onClick={ () => handleRemoveFighter(fighter)}>Add</button>
         </React.Fragment>
       ))}
+      </div>
+    }
     </div>  
     <div className="fighters">
       {isZombieFighters.map((fighter, index) => (
