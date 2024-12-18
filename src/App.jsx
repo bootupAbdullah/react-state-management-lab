@@ -16,12 +16,9 @@ const App = () => {
 
   const handleAddFighter= (fighter) => {
     console.log(...team, fighter)
-    setTeam([...team, fighter])
+    setTeam([...team, fighter])x
     setTotalStrength({...totalStrength + fighter.strength})
   }
-
-
-  
 
   //Create a new state variable named 'zombieFighters'
   const [isZombieFighters, setIsZombieFighters] = useState([
